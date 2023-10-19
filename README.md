@@ -109,12 +109,11 @@ rspec spec
 
 ## 👥 Authors: <a name="authors"></a>
 
-👤 **Derek Akrasi Konadu**
+### 👤 **Derek Akrasi Konadu**
 
- **GitHub**  | [@githubhandle](https://github.com/obibaadoma)
-**Twitter**: [@twitterhandle](https://twitter.com/obibakwekuadoma)
-**LinkedIn**: [LinkedIn](https://linkedin.com/in/derek-akrasi-konadu)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- **GitHub**  | [@githubhandle](https://github.com/obibaadoma)
+- **Twitter**: [@twitterhandle](https://twitter.com/obibakwekuadoma)
+- **LinkedIn**: [LinkedIn](https://linkedin.com/in/derek-akrasi-konadu)
 
 ### 👤 **Mohamed-Gamaleldin**
 
