@@ -1,0 +1,16 @@
+{
+  "Lables": [
+    {
+      "title": "The Shawshank Redemption",
+      "color": "red"
+    },
+    {
+      "title": "Title 2",
+      "color": "green"
+    },
+    {
+      "title": "Title 3",
+      "color": "blue"
+    }
+  ]
+}
