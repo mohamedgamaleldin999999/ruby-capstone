@@ -39,7 +39,7 @@ In **Catalog of my things** project, we created a console app that will help use
 
 ### Video presentation
 
-[Check out the video presentation]()
+[Check out the video presentation](https://www.youtube.com/watch?v=gws8VxzHouY)
 
 <!-- Features -->
 
