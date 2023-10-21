@@ -1,13 +1,11 @@
 require_relative '../classes/Music/music_album'
 
 module MusicModule
-  def create_music_album(release_date, label, genre)
-    music_album = MusicAlbum.new(release_date, label)
-    music_album.genre = genre  # Set the genre for the music album
-    @music_albums << music_album
-    save_music_album_to_file(@music_albums)
+  def create_musicalbum(publish_date, on_spotify)
+    song = MusicAlbum.new(publish_date, on_spotify)
+    @songs << song
+    save_music_album_to_file(@songs)
   end
-  
 
   def list_musicalbums
     if @songs.empty?
