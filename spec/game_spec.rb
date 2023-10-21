@@ -1,4 +1,24 @@
+# frozen_string_literal: true
+
 require_relative '../classes/Game/game'
+
+describe Game do
+  describe '#can_be_archived?' do
+    context 'Return Boolean based on difference between published date and difference between last played time' do
+      it 'when the difference is greater than ten years and difference between last played time
+      and present time is greater that 2 it should return true' do
+        game = Game.new('Yes', '2019/01/01', '2001/01/01')
+        expect(game.can_be_archived?).to eq(true)
+      end
+
+      it 'when the difference is less than ten years and difference between last played
+      time and present time is greater that 2 it should return flase' do
+        game = Game.new('Single Player', '2017/01/01', '2022/03/07')
+        expect(game.can_be_archived?).to eq(false)
+      end
+    end
+  end
+endrequire_relative '../classes/Game/game'
 
 describe Game do
   describe '#can_be_archived?' do

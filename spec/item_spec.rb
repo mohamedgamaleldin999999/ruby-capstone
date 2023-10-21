@@ -1,4 +1,40 @@
+# frozen_string_literal: true
+
 require_relative '../classes/item'
+require_relative '../classes/Game/author'
+require_relative '../classes/Book/label'
+require_relative '../classes/Music/genre'
+
+describe Item do
+  before :each do
+    @item = Item.new('2020-01-01')
+  end
+
+  context 'testing methods' do
+    it 'test genre method' do
+      genre = Genre.new('Rock')
+      @item.genre = genre
+      expect(genre.items).to eq([@item])
+    end
+
+    it 'test author method' do
+      author = Author.new('George', 'Martin')
+      @item.author = author
+      expect(author.items).to eq([@item])
+    end
+
+    it 'test label method' do
+      label = Label.new('label 1', 'red')
+      @item.label = label
+      expect(label.items).to eq([@item])
+    end
+
+    it 'test archived method' do
+      @item.archived = true
+      expect(@item.archived).to eq(true)
+    end
+  end
+endrequire_relative '../classes/item'
 require_relative '../classes/Game/author'
 require_relative '../classes/Book/label'
 require_relative '../classes/Music/genre'
