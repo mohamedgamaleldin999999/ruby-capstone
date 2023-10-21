@@ -26,7 +26,7 @@ class GameManager
     data = JSON.parse(File.read("#{DATA_FOLDER}game.json"))
     games = []
     data['Games'].map do |game_data|
-      games << Game.new(game_data['multiplayer'], game_data['last_played_at'], game_data['publish_date'], game_data['author'])
+      games << Game.new(game_data['multiplayer'], game_data['last_played_at'], game_data['publish_date'])
     end
     games
   end

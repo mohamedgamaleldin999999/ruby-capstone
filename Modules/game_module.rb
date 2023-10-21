@@ -1,8 +1,8 @@
 require_relative '../classes/Game/game'
 
 module GameModule
-  def create_game(multiplayer, last_played_at, publish_date, author)
-    game = Game.new(multiplayer, last_played_at, publish_date, author)
+  def create_game(multiplayer, last_played_at, publish_date)
+    game = Game.new(multiplayer, last_played_at, publish_date)
     @games << game
   end
 
