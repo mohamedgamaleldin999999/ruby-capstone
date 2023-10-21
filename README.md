@@ -6,22 +6,27 @@
 
 # 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
+- [Catalog of my things.](#catalog-of-my-things)
+- [📗 Table of Contents](#-table-of-contents)
+  - [Description](#description)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
     - [Video presentation](#video-presentation)
-    - [Key Features](#key-features)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+    - [Key Features ](#key-features-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+    - [Installation](#installation)
+    - [Usage](#usage)
+  - [👥 Authors: ](#-authors-)
+    - [👤 **Derek Akrasi Konadu**](#-derek-akrasi-konadu)
+    - [👤 **Mohamed-Gamaleldin**](#-mohamed-gamaleldin)
+    - [👤 **Wael Elsafty**](#-wael-elsafty)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 ## Description
 
@@ -154,6 +159,6 @@ I would like to thank Microverse for including this in their curriculum.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed.
+This project is [MIT](LICENSE.txt) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
