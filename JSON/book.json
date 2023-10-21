@@ -29,6 +29,21 @@
       "publisher": "Mesak pub",
       "cover_state": "bad",
       "publish_date": "2013-04-05"
+    },
+    {
+      "publisher": "sdadas",
+      "cover_state": "good",
+      "publish_date": "2023-10-22"
+    },
+    {
+      "publisher": "dsd",
+      "cover_state": "good",
+      "publish_date": "2202-02-20"
+    },
+    {
+      "publisher": "8",
+      "cover_state": "good",
+      "publish_date": "2022-02-22"
     }
   ]
 }

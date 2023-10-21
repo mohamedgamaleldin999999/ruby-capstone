@@ -7,7 +7,9 @@ module MainModule
     last_played_at = gets.chomp
     puts 'When is game published [Enter date format year/month/date]:'
     publish_date = gets.chomp
-    app.create_game(multiplayer, last_played_at, publish_date)
+    puts 'who is the author of this game?'
+    author = gets.chomp
+    app.create_game(multiplayer, last_played_at, publish_date, author)
   end
 
   def add_mucicalbum(app)
