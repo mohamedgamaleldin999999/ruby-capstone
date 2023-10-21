@@ -1,10 +1,4 @@
-# frozen_string_literal: true
-
-require_relative 'classes/Music/music_album'
-
-describe MusicAlbum do
-  # ...
-endrequire_relative '../classes/Music/music_album'
+require_relative '../classes/Music/music_album'
 
 describe MusicAlbum do
   describe '#can_be_archived?' do
