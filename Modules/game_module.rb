@@ -1,10 +1,14 @@
 require_relative '../classes/Game/game'
 
 module GameModule
-  def create_game(multiplayer, last_played_at, publish_date)
+  def create_game(multiplayer, last_played_at, publish_date, first_name, last_name)
     game = Game.new(multiplayer, last_played_at, publish_date)
+    game.first_name = first_name  # Set the first name of the author
+    game.last_name = last_name    # Set the last name of the author
     @games << game
+    save_game_to_file(@games)
   end
+  
 
   def list_games
     if @games.empty?

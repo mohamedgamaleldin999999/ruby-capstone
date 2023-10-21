@@ -1,11 +1,14 @@
 require_relative '../classes/Book/book'
 
 module BookModule
-  def create_book(publisher, cover_state, publish_date)
+  def create_book(publisher, cover_state, publish_date, title, color)
     book = Book.new(publisher, cover_state, publish_date)
+    book.title = title  # Set the title for the book
+    book.color = color  # Set the color for the book
     @books << book
     save_book_to_file(@books)
   end
+  
 
   def list_books
     if @books.empty?
