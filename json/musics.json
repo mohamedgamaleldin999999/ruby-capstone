@@ -28,5 +28,25 @@
     "source": null,
     "label": null,
     "on_spotify": false
+  },
+  {
+    "id": 8241,
+    "publish_date": "2022-10-10",
+    "archived": false,
+    "genre": 695,
+    "author": null,
+    "source": null,
+    "label": null,
+    "on_spotify": false
+  },
+  {
+    "id": 7530,
+    "publish_date": "2022-10-10",
+    "archived": true,
+    "genre": 913,
+    "author": null,
+    "source": null,
+    "label": null,
+    "on_spotify": true
   }
 ]

@@ -46,5 +46,17 @@
     "title": "Portal",
     "multiplayer": false,
     "last_played_at": "2013-02-04"
+  },
+  {
+    "id": null,
+    "publish_date": "2022-10-10",
+    "archived": false,
+    "genre": null,
+    "author": 728,
+    "source": null,
+    "label": null,
+    "title": "fifa",
+    "multiplayer": false,
+    "last_played_at": "2022-10-10"
   }
 ]
