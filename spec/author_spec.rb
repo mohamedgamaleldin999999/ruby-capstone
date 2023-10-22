@@ -1,26 +1,27 @@
-require_relative '../classes/Game/author'
-require_relative '../classes/item'
+require_relative '../classes/author'
 
 describe Author do
-  before :each do
-    @author = Author.new('George', 'Martin')
+  let(:author) { Author.new('Stephen', 'King') }
+
+  it 'has a full name' do
+    expect(author.full_name).to eq('Stephen King')
   end
 
-  context 'test add item method' do
-    it 'should return an array of item' do
-      item = Item.new('2009/09/13', archived: false)
-      @author.add_item(item)
-      expect(@author.items).to eq([item])
-    end
+  it "can add items to the author's collection when they can be archived" do
+    item = double('item', can_be_archived?: true)
+    allow(item).to receive(:set_author)
+
+    author.add_item(item)
+
+    expect(author.items).to include(item)
   end
 
-  context '#test Author' do
-    it 'should return correct first name of author' do
-      expect(@author.first_name).to eq('George')
-    end
+  it "does not add items to the author's collection when they cannot be archived" do
+    item = double('item', can_be_archived?: false)
+    allow(item).to receive(:set_author)
 
-    it 'should return correct last name of author' do
-      expect(@author.last_name).to eq('Martin')
-    end
+    author.add_item(item)
+
+    expect(author.items).not_to include(item)
   end
 end

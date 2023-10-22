@@ -1,42 +1,39 @@
-require_relative '../classes/Book/book'
+require 'date'
+require_relative '../classes/book'
+require_relative '../classes/item'
 
 describe Book do
-  describe '#can_be_archived?' do
-    context 'Return Boolean based on age or cover condition' do
-      it 'when the book is old enough or cover state is bad returns true' do
-        book = Book.new('publisher', 'bad', '2002/01/01')
-        expect(book.can_be_archived?).to eq(true)
-      end
+  describe 'initialize method' do
+    it 'takes publisher, cover_state, publish_date (Date object), archived parameters and returns a Book' do
+      publish_date = Date.parse('2020/12/12')
+      my_book = Book.new('Packt', 'good', publish_date, false)
 
-      it 'when the book is old enough but cover state is good returns false' do
-        book = Book.new('publisher', 'good', '2002/01/01')
-        expect(book.can_be_archived?).to eq(false)
-      end
-
-      it 'when the book is new but cover state is bad returns true' do
-        book = Book.new('publisher', 'bad', '2022/01/01')
-        expect(book.can_be_archived?).to eq(true)
-      end
+      expect(my_book).to be_an_instance_of Book
+      expect(my_book).to be_a(Item)
+      expect(my_book.publisher).to eql('Packt')
+      expect(my_book.cover_state).to eql('good')
+      expect(my_book.publish_date).to eql(publish_date)
+      expect(my_book.archived).to eql(false)
     end
   end
 
-  describe '#Should validate user input' do
-    context 'when user inputs publisher name' do
-      it 'returns correct publisher' do
-        book = Book.new('JK Publishers', 'bad', '2002/01/01')
-        expect(book.publisher).to eq('JK Publishers')
-      end
+  describe 'can_be_archived method' do
+    it 'returns true when publish date is older than 10 years' do
+      publish_date = Date.parse('2010/12/12')
+      my_book = Book.new('Packt', 'good', publish_date, false)
+      expect(my_book.can_be_archived?).to eql(true)
+    end
 
-      it 'when user inputs cover\'s state condition returns correct cover\'s state' do
-        book = Book.new('JK Publishers', 'bad', '2002/01/01')
-        expect(book.cover_state).to eq('bad')
-      end
+    it 'returns true when cover state is bad' do
+      publish_date = Date.parse('2010/12/12')
+      my_book = Book.new('Packt', 'bad', publish_date, false)
+      expect(my_book.can_be_archived?).to eql(true)
+    end
 
-      it 'when user inputs published date returns correct published date' do
-        book = Book.new('JK Publishers', 'bad', '2002/01/01')
-        expected_date = Date.parse('2002/01/01')
-        expect(book.publish_date).to eq(expected_date)
-      end
+    it 'returns false when publish date is more recent than 10 years and cover state is not bad' do
+      publish_date = Date.parse('2020/12/12')
+      my_book = Book.new('Packt', 'good', publish_date, false)
+      expect(my_book.can_be_archived?).to eql(false)
     end
   end
 end

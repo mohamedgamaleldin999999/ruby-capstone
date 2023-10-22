@@ -1,52 +1,30 @@
-require_relative '../classes/Game/game'
+require 'date'
+require_relative '../classes/game'
 
 describe Game do
-  describe '#can_be_archived?' do
-    context 'Return Boolean based on difference between published date and difference between last played time' do
-      it 'when the difference is greater than ten years and difference between last played time
-      and present time is greater that 2 it should return true' do
-        game = Game.new('Yes', '2019/01/01', '2001/01/01')
-        expect(game.can_be_archived?).to eq(true)
-      end
+  let(:publish_date) { Date.new(2010, 1, 1) }
+  let(:archived) { false }
+  let(:game) { Game.new('Game Title', 'Multiplayer', (Time.now - (3 * 365 * 24 * 60 * 60)), publish_date, archived) }
 
-      it 'when the difference is less than ten years and difference between last played
-      time and present time is greater that 2 it should return flase' do
-        game = Game.new('Single Player', '2017/01/01', '2022/03/07')
-        expect(game.can_be_archived?).to eq(false)
-      end
-
-      it 'when the difference is greater than ten years and difference between last played
-      time and present time is less that 2 it should return false' do
-        game = Game.new('No', '2022/09/27', '2005/05/22')
-        expect(game.can_be_archived?).to eq(false)
-      end
-
-      it 'when the difference is less than ten years and difference between last played
-      time and present time is less that 2 it should return false' do
-        game = Game.new('No', '2022/09/27', '2022/05/18')
-        expect(game.can_be_archived?).to eq(false)
-      end
-    end
+  it 'inherits properties from Item class' do
+    expect(game.title).to eq('Game Title')
+    expect(game.multiplayer).to eq('Multiplayer')
+    expect(game.last_played_at).to be_within(1).of(Time.now - (3 * 365 * 24 * 60 * 60))
+    expect(game.publish_date).to eq(publish_date)
+    expect(game.archived).to eq(archived)
   end
 
-  describe '#Should validate user input' do
-    context 'when user inputs multiplayer' do
-      it 'returns correct value of multiplayer' do
-        game = Game.new('Single Player', '2017/01/01', '2022/03/07')
-        expect(game.multiplayer).to eq('Single Player')
-      end
+  it 'can be archived when last played more than 2 years ago' do
+    expect(game.can_be_archived?).to be true
+  end
 
-      it 'returns correct date of last_played_at' do
-        game = Game.new('No', '2022/09/27', '2022/05/18')
-        expected_date = Date.parse('2022/09/27')
-        expect(game.last_played_at).to eq(expected_date)
-      end
+  it 'cannot be archived when last played less than 2 years ago' do
+    recent_game = Game.new('Recent Title', 'Multiplayer', Time.now, publish_date, archived)
+    expect(recent_game.can_be_archived?).to be false
+  end
 
-      it 'returns correct publish_date' do
-        game = Game.new('Yes', '2019/01/01', '2001/01/01')
-        expected_date = Date.parse('2001/01/01')
-        expect(game.publish_date).to eq(expected_date)
-      end
-    end
+  it 'can be archived using move_to_archive method' do
+    game.move_to_archive
+    expect(game.archived).to be true
   end
 end

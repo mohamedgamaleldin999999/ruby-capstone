@@ -1,28 +1,38 @@
+require 'date'
+require_relative '../classes/label'
 require_relative '../classes/item'
-require_relative '../classes/Book/label'
 
-describe Book do
-  before :each do
-    @label = Label.new('title', 'color')
-  end
+describe Label do
+  describe 'initialize method' do
+    it 'takes title and color parameters and returns a Label' do
+      my_label = Label.new('title', 'red')
 
-  context 'test add item method' do
-    it 'should return an array of item' do
-      item = Item.new('2002/01/01', archived: true)
-      @label.add_item(item)
-      expect(@label.items).to eq([item])
+      expect(my_label).to be_an_instance_of Label
+      expect(my_label.title).to eql('title')
+      expect(my_label.color).to eql('red')
+      expect(my_label.items).to eql([])
     end
   end
 
-  context 'test user inputs' do
-    it 'should return correct value of title' do
-      @label = Label.new('label 1', 'red')
-      expect(@label.title).to eq('label 1')
+  describe 'add_item method' do
+    it 'takes an item object and adds it to the items array' do
+      publish_date = Date.parse('2020/10/10')
+      my_item = Item.new(publish_date, false)
+      my_label = Label.new('title', 'red')
+
+      my_label.add_item(my_item)
+
+      expect(my_label.items).to eql([my_item])
+      expect(my_item.label).to eql(my_label)
     end
 
-    it 'should return correct value of color' do
-      @label = Label.new('label 1', 'red')
-      expect(@label.color).to eq('red')
+    it 'doesn\'t add object to the items array if it is not of type Item' do
+      my_item = 12
+      my_label = Label.new('title', 'red')
+
+      my_label.add_item(my_item)
+
+      expect(my_label.items).to eql([])
     end
   end
 end
