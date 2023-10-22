@@ -1,15 +1,34 @@
-require 'json'
-require_relative '../classes/Music/genre'
+require_relative '../classes/genre'
 
 class GenreManager
-  DATA_FOLDER = 'JSON/'.freeze
+  def initialize
+    @genres_list = []
+  end
 
-  def load_genre
-    return [] unless File.exist?("#{DATA_FOLDER}genre.json")
+  attr_reader :genres_list
 
-    data = JSON.parse(File.read("#{DATA_FOLDER}genre.json"))
-    genres = []
-    data['Genres'].map { |genre_data| genres << Genre.new(genre_data['name']) }
-    genres
+  def add_genre(name)
+    genre = Genre.new(name)
+    @genres_list.push(genre)
+    genre
+  end
+
+  def save_to_file
+    file_path = 'json/genres.json'
+    genres_data = @genres_list.map(&:to_hash)
+    File.open(file_path, 'w') do |file|
+      file.puts JSON.pretty_generate(genres_data)
+    end
+  end
+
+  def load_from_file
+    file_path = 'json/genres.json'
+    return unless File.exist?(file_path)
+
+    genre_data = JSON.parse(File.read(file_path))
+    genre_data.each do |genre_hash|
+      genre = add_genre(genre_hash['name'])
+      genre.id = genre_hash['id']
+    end
   end
 end

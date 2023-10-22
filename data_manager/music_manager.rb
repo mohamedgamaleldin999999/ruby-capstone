@@ -1,32 +1,45 @@
-require 'json'
-require_relative '../classes/Music/music_album'
+require_relative '../classes/music_album'
+require 'date'
 
 class MusicManager
-  DATA_FOLDER = 'JSON/'.freeze
-
-  def load_music_album
-    return [] unless File.exist?("#{DATA_FOLDER}music_album.json")
-
-    data = JSON.parse(File.read("#{DATA_FOLDER}music_album.json"))
-    music_albums = []
-    data['MusicAlbums'].map do |music_album_data|
-      music_albums << MusicAlbum.new(music_album_data['publish_date'], music_album_data['on_spotify'])
-    end
-    music_albums
+  def initialize
+    @music_list = []
   end
 
-  def save_music_album(songs)
-    File.open("#{DATA_FOLDER}music_album.json", 'w') do |file|
-      data = {
-        'MusicAlbums' => songs.map do |song|
-                           {
-                             'publish_date' => song.publish_date,
-                             'on_spotify' => song.on_spotify,
-                             'id' => song.id
-                           }
-                         end
-      }
-      file.write(JSON.pretty_generate(data))
+  attr_reader :music_list
+
+  def add_music(publish_date, on_spotify, archived)
+    music = MusicAlbum.new(publish_date, on_spotify, archived)
+    @music_list.push(music)
+    music
+  end
+
+  def save_to_file
+    file_path = 'json/musics.json'
+    musics_data = @music_list.map(&:to_hash)
+    File.open(file_path, 'w') do |file|
+      file.puts JSON.pretty_generate(musics_data)
+    end
+  end
+
+  def load_from_file
+    file_path = 'json/musics.json'
+    return unless File.exist?(file_path)
+
+    music_data = JSON.parse(File.read(file_path))
+    music_data.each do |music_hash|
+      publish_date = Date.parse(music_hash['publish_date'])
+      archived = music_hash['archived'] == 'true'
+      on_spotify = music_hash['on_spotify'] == 'true'
+      music = add_music(publish_date, on_spotify, archived)
+      music.id = music_hash['id']
+
+      # Temoporarily store ids of properties, the associations will be restored once
+      # the .json files for Genre, Author, Source, and Label are loaded
+      music.genre = music_hash['genre']
+      music.author = music_hash['author']
+      music.source = music_hash['source']
+      music.label = music_hash['label']
     end
   end
 end
