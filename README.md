@@ -53,7 +53,6 @@ In **Catalog of my things** project, we created a console app that will help use
 Key features of the application
 
 - Set up associations as per UML diagram
-- Add basic UI
 - Preserve data into JSON
 - Unit tests
 - Prepared Schema for tables structure.
